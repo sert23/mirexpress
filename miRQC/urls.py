@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from newJob.views import startNew, testMulti, launchJob, checkStatus, startNew2
+from spikes.views import startNew
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import include, path
 
 urlpatterns = [
 
@@ -29,6 +31,7 @@ urlpatterns = [
     url(r'^$', startNew2.as_view(), name='home'),
     # url(r'^$', startNew.as_view(), name='home'),
     url(r'^check', checkStatus.as_view(), name="check_status"),
+    url(r'^spikes/', include('spikes.urls')),
     url(r'^testqc', testMulti.as_view()),
     url(r'^launch', launchJob.as_view(), name="launch"),
     url(r'^result', include('results.urls')),

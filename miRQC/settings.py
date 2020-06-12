@@ -133,9 +133,13 @@ MAIN_SITE = "https://arn.ugr.es"
 SUB_SITE = ''
 STATIC_URL = SUB_SITE + '/static/'
 
-MEDIA_ROOT = "/Users/ernesto/PycharmProjects/miRQC/upload"
+MEDIA_ROOT = "/Users/ernesto/PycharmProjects/mirexpress/upload"
 MEDIA_URL = SUB_SITE + "/media/"
 
 SPECIES_FILE = "/Users/ernesto/Downloads/species.txt"
 
 VAR_DICT_PATH = "/Users/ernesto/PycharmProjects/miRQC/miRQC/variables.json"
+
+#example files
+
+SPIKE_EXAMPLE = "/Users/ernesto/PycharmProjects/mirexpress/upload/test/spikes.fa"
