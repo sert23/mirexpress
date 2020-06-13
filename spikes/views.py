@@ -37,7 +37,7 @@ def make_config(req_obj):
     line = "spikeFile=" + files[0]
     config_lines.append(line)
     if study_string:
-        line = "study=" + study_string
+        line = "studies=" + study_string
         config_lines.append(line)
     dest_file = os.path.join(output, "config.txt")
     file_content = "\n".join(config_lines)
