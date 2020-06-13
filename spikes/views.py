@@ -3,7 +3,7 @@ from django.views.generic import FormView, DetailView
 import string
 import random
 import os
-from miRQC.settings import MEDIA_ROOT, MEDIA_URL, SUB_SITE, MEDIA_URL, MAIN_SITE, SPIKE_EXAMPLE
+from miRQC.settings import MEDIA_ROOT, MEDIA_URL, SUB_SITE, MEDIA_URL, MAIN_SITE, SPIKE_EXAMPLE, PROFILER_PATH
 from django.http import JsonResponse
 from newJob.forms import FileForm
 import shutil
@@ -43,6 +43,8 @@ def make_config(req_obj):
     file_content = "\n".join(config_lines)
     with open(dest_file,"w") as cf:
         cf.write(file_content)
+
+    return dest_file
 
 
 
@@ -148,7 +150,12 @@ class checkStatus(FormView):
         folder = request.GET.get('jobId', None)
         print(request.GET)
         if not os.path.exists(os.path.join(MEDIA_ROOT,folder)):
-            make_config(request)
+            config_path = make_config(request)
+            launch_line = "java -classpath " +PROFILER_PATH + " " + config_path
+            subprocess.Popen(launch_line.split(" "))
+        #     java -classpath
+        # /dbs/mirexpress/java2020:/dbs/mirexpress/java2020/mariadb-java-client-1.1.7.jar miRepo.Profiler
+        #  /shared/mirexpress/upload/OTIHYXFVIR0AS2C/config.txt
 
         context = {}
         # get folder from path
