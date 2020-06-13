@@ -126,6 +126,7 @@ class startNew(FormView):
                 is_new = True
                 name = ufile.file.name.split("/")[-1]
                 temp_path = ufile.file.name
+                print(temp_path)
                 dest_path = os.path.join(upload_folder, name)
                 if os.path.exists(dest_path):
                     is_new = False
@@ -148,7 +149,7 @@ class checkStatus(FormView):
 
         #first if we need to generate the config
         folder = request.GET.get('jobId', None)
-        print(request.GET)
+        # print(request.GET)
         if not os.path.exists(os.path.join(MEDIA_ROOT,folder)):
             config_path = make_config(request)
             launch_line = "java -classpath " +PROFILER_PATH + " " + config_path
